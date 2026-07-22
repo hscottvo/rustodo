@@ -4,3 +4,10 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+color-eyre = "0.6.5"
+derive_more = { version = "2.1.1", features = ["from"] }
+eyre = "0.6.12"
+thiserror = "2.0.19"
+[dependencies.uuid]
+version = "1.24.0"
+features = ["v4"]
