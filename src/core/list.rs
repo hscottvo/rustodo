@@ -1,4 +1,7 @@
-use crate::error::Result;
+use crate::{
+    core::list_entry::{self, ListEntry, ListEntryId, ListEntryRepository},
+    error::Result,
+};
 use uuid::Uuid;
 
 use crate::core::item::ItemId;
@@ -8,11 +11,16 @@ pub struct ListId(Uuid);
 #[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub struct List {
     id: ListId,
+    entries: Vec<ListEntryId>,
 }
-#[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
-pub struct CreateListRequest {
-    entries: Vec<ItemId>,
+
+impl List {
+    pub fn add_entry_to_list(&mut self, entries: &[ListEntryId]) {
+        self.entries.extend_from_slice(entries);
+    }
 }
-trait ListRepository {
-    fn create_list(&self, req: &CreateListRequest) -> Result<List>;
+
+pub trait ListRepository {
+    fn create_list(&self, req: &[ItemId]) -> Result<List>;
+    fn append_to_list(&self, entries: &[ItemId]) -> Result<List>;
 }

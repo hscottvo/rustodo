@@ -1,6 +1,4 @@
-use std::{collections::HashMap, sync::Mutex};
-
-use crate::error::{Error, Result};
+use crate::error::Result;
 use derive_more::From;
 use uuid::Uuid;
 
@@ -19,12 +17,7 @@ impl Item {
     }
 }
 
-#[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
-pub struct CreateItemRequest {
-    pub(crate) content: String,
-}
-
 pub trait ItemRepository {
-    fn create_item(&self, req: &CreateItemRequest) -> Result<Item>;
+    fn create_item(&self, req: impl Into<String>) -> Result<Item>;
     fn get_item(&self, id: ItemId) -> Result<Item>;
 }
