@@ -1,8 +1,9 @@
 use crate::error::Result;
 use derive_more::From;
+use serde::{Deserialize, Serialize};
 use uuid::Uuid;
 
-#[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash, From)]
+#[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash, From, Serialize, Deserialize)]
 pub struct ItemId(Uuid);
 
 #[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]

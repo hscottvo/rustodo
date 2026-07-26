@@ -1,7 +1,4 @@
-use crate::{
-    core::list_entry::{self, ListEntry, ListEntryId, ListEntryRepository},
-    error::Result,
-};
+use crate::{core::list_entry::ListEntryId, error::Result};
 use uuid::Uuid;
 
 use crate::core::item::ItemId;
